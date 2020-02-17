@@ -1,0 +1,28 @@
+
+  <div class="col-2">
+    <div class="card">
+        <div class="card-body ">
+          <h5 class="card-title">Reminder Name</h5>
+          <hr>
+          
+          
+          <nav class="navbar navbar-expand-sm navbar-light bg-transparent">
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="customSwitch1">
+              <label class="custom-control-label" for="customSwitch1">Enable</label>
+            </div>
+            <a class="nav-link offset-3" href="#">edit</a>
+          </nav>
+          
+        </div>
+    </div>
+</div>
+
+{% if reminder %}
+    {% for r in reminder %}
+    <cite>{{ r.name }}</cite>
+    {% endfor %}
+{% endif %}
+
+
+
