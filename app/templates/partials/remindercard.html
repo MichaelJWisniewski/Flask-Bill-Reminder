@@ -1,28 +1,81 @@
 
-  <div class="col-2">
-    <div class="card">
-        <div class="card-body ">
-          <h5 class="card-title">Reminder Name</h5>
-          <hr>
-          
-          
-          <nav class="navbar navbar-expand-sm navbar-light bg-transparent">
-            <div class="custom-control custom-switch">
-              <input type="checkbox" class="custom-control-input" id="customSwitch1">
-              <label class="custom-control-label" for="customSwitch1">Enable</label>
-            </div>
-            <a class="nav-link offset-3" href="#">edit</a>
-          </nav>
-          
-        </div>
-    </div>
-</div>
-
 {% if reminder %}
     {% for r in reminder %}
-    <cite>{{ r.name }}</cite>
+    <div>
+      <div class="card mr-5" style="width: 18rem;">
+          <div class="card-body ">
+            <a href="reminders/update/{{ r.reminder_id }}" class="nav-link offset-9" data-toggle="modal" data-target="#modalRegisterForm">Edit</a>
+            <h5 class="card-title">{{ r.name }}</h5>
+            <hr>
+            
+            <p>Due Date: <br />{{ r.due_on }}</p>
+            <p>Remind On: <br />{{ r.remind_on }}</p>
+            <p>Total: <br />{{ r.amount }}</p>
+          
+            <nav class="navbar navbar-light bg-transparent">
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitch{{ r.reminder_id }}">
+                <label class="custom-control-label" for="customSwitch{{ r.reminder_id }}">Enable</label>
+              </div>
+              <a class="nav-link offset-1" href='reminders/delete/{{ r.reminder_id }}'>delete</a>
+            </nav> 
+          </div>
+      </div>
+    </div> 
+
+    <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold" name=remindernum value={{r.reminder_id}}>Edit Reminder</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+            
+            <form action="{{ url_for('account.updatereminder', id=r.reminder_id ) }}" method="POST">
+              <div class="form-group">
+                <label for="">Reminder Name</label>
+                <input type="text" class="form-control" name="remindername" value={{ r.name }}>
+              </div>
+              <div class="form-group">
+                <label for="">Recipent Email</label>
+                <input type="text" class="form-control" name="email" value={{ r.email }}>
+              </div>
+              <div class="form-group">
+                <label for="">Due Date</label>
+                <input type="text" class="form-control" name="duedate" value={{ r.due_on }}>
+              </div>
+              <div class="form-group">
+                <label for="">Remind On</label>
+                <input type="text" class="form-control" name="remindon" value={{ r.remind_on }}>
+              </div>
+              <div class="form-group">
+                <label for="">Amount</label>
+                <input type="text" class="form-control" name="amount" value={{ r.amount }}>
+              </div>
+              
+              <button type="submit">Save</button>
+
+            </form>
+            
+            
+          
+
+          </div>
+        </div>
+      </div>
+    </div>
     {% endfor %}
 {% endif %}
+
+
+
+
+
+
+
 
 
 

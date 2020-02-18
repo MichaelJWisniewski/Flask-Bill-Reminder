@@ -31,3 +31,13 @@ class ReminderForm(FlaskForm):
     repeat = BooleanField()
     enabled = BooleanField()
     submit = SubmitField('Create Reminder')
+
+class UpdateReminderForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    amount = StringField('Amount', validators=[DataRequired()])
+    due_on = StringField('Due Date', validators=[DataRequired()])
+    remind_on = StringField('Reminder Date', validators=[DataRequired()])
+    repeat = BooleanField()
+    enabled = BooleanField()
+    submit = SubmitField('Create Reminder')

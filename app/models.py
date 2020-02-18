@@ -28,7 +28,7 @@ class Reminders(db.Model):
     email = db.Column(db.String(50), nullable=False)
     repeat = db.Column(db.Boolean, nullable=False)
     enabled = db.Column(db.Boolean, nullable=False)
-    amount = db.Column(db.Numeric(5,2), nullable=False)
+    amount = db.Column(db.String(8), nullable=False)
     due_on = db.Column(db.String(8), nullable=False)
     remind_on = db.Column(db.String(8), nullable=False)
 
